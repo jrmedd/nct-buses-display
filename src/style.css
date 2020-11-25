@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
+
 body {
+    font-family: 'Cabin';
     background: #000000;
+    white: #ffffff;
     overflow: hidden;
 }
 
@@ -7,12 +11,17 @@ main {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    align-items: center;
-    align-content: center;
-    height: 99vh;
-    width: 99vw;
+    align-content: space-between;
+    height: 95vh;
+    width: 100vw;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
+.M {
+    font-size: 1.3vw;
+}
 .XL {
-    font-size: 2.5rem;
+    font-size: 2.5vw;
+    width: 100%;
 }
