@@ -29,7 +29,7 @@ const App = () => {
     getBus(stopId).then(data=>setBusTimetable(data))
   }, 15000)
   useInterval(() => {
-
+    getWeather(stopId).then((data) => setCurrentWeather(data));
   }, 1800000);
   useInterval(()=> {
     setCurrentTime(getCurrentTime(timeDisplayOptions))
