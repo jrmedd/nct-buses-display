@@ -40,6 +40,8 @@ const App = () => {
   }, 1000)
   if (stopId) {
   return (
+    <>
+    <OfflineWarning visible={!onlineStatus}>OFFLINE</OfflineWarning>
     <main>
       <FlapDisplay
         className="M"
@@ -58,6 +60,7 @@ const App = () => {
           <Weather forecast={currentWeather.forecast || ""} temperature={currentWeather.temperature || 0} width="2.5vw" />
       </DataWrapper>
     </main>
+    </>
   );
   }
   else {
@@ -106,12 +109,26 @@ const DataDisplay = styled.span(props=>css`
   font-size: 2.5vw;
 `)
 
+const OfflineWarning = styled.aside(
+  (props) => css`
+    color: #dc0051;
+    font-size: 4vw;
+    position: fixed;
+    transform: translate(-50%, 50%);
+    left: 50%;
+    top: 25%;
+    opacity: ${props.visible ? 1 : 0};
+    pointer-events: none;
+    transition: all 1s ease;
+  `
+);
+
 
 const Wind = props => {
   return (
     <DataWrapper gap="1vw">
       <DataDisplay>{props.speed}mph</DataDisplay>
-      <IconWrapper width={props.width} rotation={props.bearing}>
+      <IconWrapper visible={true} width={props.width} rotation={props.bearing}>
         <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M8.35355 0.146447C8.15829 -0.0488155 7.84171 -0.0488155 7.64645 0.146447L4.46447 3.32843C4.2692 3.52369 4.2692 3.84027 4.46447 4.03553C4.65973 4.2308 4.97631 4.2308 5.17157 4.03553L8 1.20711L10.8284 4.03553C11.0237 4.2308 11.3403 4.2308 11.5355 4.03553C11.7308 3.84027 11.7308 3.52369 11.5355 3.32843L8.35355 0.146447ZM7.5 15.5C7.5 15.7761 7.72386 16 8 16C8.27614 16 8.5 15.7761 8.5 15.5H7.5ZM7.5 0.5V15.5H8.5V0.5H7.5Z"

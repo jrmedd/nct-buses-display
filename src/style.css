@@ -12,7 +12,7 @@ main {
     flex-flow: row wrap;
     justify-content: center;
     align-content: space-between;
-    height: 95vh;
+    height: 90vh;
     width: 100vw;
     padding-top: 1rem;
     padding-bottom: 1rem;
