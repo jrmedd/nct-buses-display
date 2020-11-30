@@ -18,10 +18,18 @@ main {
     padding-bottom: 1rem;
 }
 
+.times {
+    width: 100vw;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
 .M {
-    font-size: 1.3vw;
+    font-size: 2.5vw;
 }
 .XL {
-    font-size: 2.5vw;
-    width: 100%;
+    font-size: 5.5vw;
 }
