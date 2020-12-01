@@ -17,8 +17,9 @@ const getCurrentTime = displayOptions => {
   return new Intl.DateTimeFormat("en-GB", displayOptions).format(date);
 }
 
+const stopId = new URL(window.location).searchParams.get("stop");
+
 const App = () => {
-  const stopId = new URL(window.location).searchParams.get("stop");
   const [busTimetable, setBusTimetable] = React.useState({'buses':[]})
   const [currentTime, setCurrentTime] = React.useState(getCurrentTime(timeDisplayOptions))
   const [currentWeather, setCurrentWeather] = React.useState({})
@@ -120,6 +121,7 @@ const OfflineWarning = styled.aside(
     opacity: ${props.visible ? 1 : 0};
     pointer-events: none;
     transition: all 1s ease;
+    z-index: 9999999;
   `
 );
 
@@ -163,14 +165,16 @@ const Weather = props => {
 }
 
 const getBus = async stop => {
-    const result = await fetch(`http://127.0.0.1:5000/times/${stop}`).then(res=>res.json())
-    return(result)
+    const result = await fetch(
+      `${window.location.origin}/times/${stop}`
+      ).then(res=>res.json()).catch(()=>({'buses':[]}))
+    return(result);
 }
 
 const getWeather = async (stop) => {
   const result = await fetch(
-    `http://127.0.0.1:5000/weather/${stop}`
-  ).then((res) => res.json());
+    `${window.location.origin}/weather/${stop}`
+  ).then((res) => res.json()).catch(()=>({}));
   return result;
 };
 
